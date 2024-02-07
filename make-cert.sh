@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 domain=$1
+
+ssldir=$(realpath $(dirname $0))
+cd $ssldir
 mkdir $domain; cd $domain;
-mkcert -key-file $domain-key.pem -cert-file $domain-cert.pem $domain *.$domain
-cat $domain-key.pem $domain-cert.pem > $domain-bundle.pem
-chmod 600 $domain-bundle.pem
+mkcert -key-file key.pem -cert-file cert.pem $domain *.$domain
+cat key.pem cert.pem > bundle.pem
+chmod 600 bundle.pem
